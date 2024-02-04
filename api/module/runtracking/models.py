@@ -16,7 +16,6 @@ def img_destination(instance, filename):
 
 class RunningTracking(models.Model):
     img = models.ImageField(upload_to=img_destination, blank=True, null=True)
-    timestamp = models.DateTimeField()
     avgSpeed = models.FloatField(blank=True, null=True, default=0.0)
     distance = models.IntegerField(blank=True, null=True, default=0.0)
     time = models.IntegerField(blank=True, null=True, default=0.0)

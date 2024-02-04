@@ -19,13 +19,10 @@ class RegisterView(generics.CreateAPIView):
 
 
 class LoginView(APIView):
-    permission_classes = [AllowAny, ]
+    permission_classes = [AllowAny,]
     serializer_class = ObtainTokenSerializer
 
     def post(self, request):
-        sr = self.serializer_class(data=request.data)
-        sr.is_valid(raise_exception=True)
-
         existed_user = User.objects.filter(email=request.data.get("email", "")).first()
         if not existed_user:
             return Response(data={"message": "Incorrect login information"}, status=400)
